@@ -2,11 +2,11 @@ package formatter
 
 import (
 	"errors"
-	"syscall/js"
 	"time"
 
 	"github.com/syumai/go-wasm-playground/dom/button"
 	"github.com/syumai/go-wasm-playground/dom/div"
+	"github.com/syumai/go-wasm-playground/dom/document"
 	"github.com/syumai/go-wasm-playground/dom/input"
 )
 
@@ -28,10 +28,9 @@ func New(elementID string) *Formatter {
 	return tf
 }
 
-func (tf *Formatter) initDOM(elementID string) {
-	doc := js.Global().Get("document")
-	el := doc.Call("getElementById", elementID)
-	el.Call("insertAdjacentHTML", "beforeend", `
+func (tf *Formatter) initDOM(id string) {
+	appContainer := document.GetElementByID(id)
+	appContainer.Call("insertAdjacentHTML", "beforeend", `
 <div id="timeFormatter">
 	<div>
 		<label>Time: </label>
