@@ -16,15 +16,14 @@ const defaultLayout = time.RFC3339Nano
 type Formatter struct {
 	Time            time.Time
 	Layout          string
-	FormattedStr    string
 	resultContainer *div.Div
 	layoutField     *input.TextField
 	timeField       *input.TextField
 }
 
-func New(elementID string) *Formatter {
+func New(id string) *Formatter {
 	tf := &Formatter{}
-	tf.initDOM(elementID)
+	tf.initDOM(id)
 	return tf
 }
 
@@ -133,6 +132,5 @@ func (tf *Formatter) Format() {
 		tf.resultContainer.SetText(err.Error())
 		return
 	}
-	tf.FormattedStr = tf.Time.Format(tf.Layout)
-	tf.resultContainer.SetText(tf.FormattedStr)
+	tf.resultContainer.SetText(tf.Time.Format(tf.Layout))
 }
