@@ -1,7 +1,6 @@
 package formatter
 
 import (
-	"errors"
 	"time"
 
 	"github.com/syumai/go-wasm-playground/dom/button"
@@ -14,8 +13,6 @@ const defaultLayout = time.RFC3339Nano
 
 // Formatter is time formatter
 type Formatter struct {
-	Time            time.Time
-	Layout          string
 	resultContainer *div.Div
 	layoutField     *input.TextField
 	timeField       *input.TextField
@@ -106,31 +103,17 @@ func (tf *Formatter) initDOM(id string) {
 	}
 }
 
-func (tf *Formatter) updateTime() error {
-	timeStr := tf.timeField.Value()
-	t, err := time.Parse(defaultLayout, timeStr)
-	if err != nil {
-		return errors.New("error parsing time str: please input date format in `" + defaultLayout + "`")
-	}
-	tf.Time = t
-	return nil
-}
-
-func (tf *Formatter) updateLayout() {
-	tf.Layout = tf.layoutField.Value()
-}
-
 func (tf *Formatter) Now() {
 	tf.timeField.SetValue(time.Now().Format(defaultLayout))
 	tf.Format()
 }
 
 func (tf *Formatter) Format() {
-	tf.updateLayout()
-	err := tf.updateTime()
+	t, err := time.Parse(defaultLayout, tf.timeField.Value())
 	if err != nil {
-		tf.resultContainer.SetText(err.Error())
+		tf.resultContainer.SetText("error parsing time str: please input date format in `" + defaultLayout + "`")
 		return
 	}
-	tf.resultContainer.SetText(tf.Time.Format(tf.Layout))
+	layout := tf.layoutField.Value()
+	tf.resultContainer.SetText(t.Format(layout))
 }
