@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/syumai/go-wasm-playground/time/timeformatter"
+	"github.com/syumai/go-wasm-playground/time/formatter"
 )
 
 func main() {
-	timeformatter.NewTimeFormatter("app")
+	f := formatter.New("app")
+	f.Now()
 	select {}
 }
