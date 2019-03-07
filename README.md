@@ -2,6 +2,7 @@
 
 * https://syumai.github.io/go-wasm-playground/success/
 * https://syumai.github.io/go-wasm-playground/error/
+* https://syumai.github.io/go-wasm-playground/time/
 
 ### Success
 
@@ -26,3 +27,7 @@ func main() {
 ```
 Uncaught SyntaxError: Unexpected token (
 ```
+
+### TimeFormatter
+
+* https://syumai.github.io/go-wasm-playground/time/
