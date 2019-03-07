@@ -2,7 +2,7 @@
 
 * https://syumai.github.io/go-wasm-playground/success/
 * https://syumai.github.io/go-wasm-playground/error/
-* https://syumai.github.io/go-wasm-playground/time/
+* [https://syumai.github.io/go-wasm-playground/time/](https://syumai.github.io/go-wasm-playground/time/index.html)
 
 ### Success
 
@@ -30,4 +30,4 @@ Uncaught SyntaxError: Unexpected token (
 
 ### TimeFormatter
 
-* https://syumai.github.io/go-wasm-playground/time/
+* [https://syumai.github.io/go-wasm-playground/time/](https://syumai.github.io/go-wasm-playground/time/index.html)
