@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Classify Go counter example</title>
+    <style>
+    input {
+        width: 250px;
+    }
+    </style>
+  </head>
+  <body>
+    <h2>Classify Go counter example</h2>
+
+    <div>
+      <div id="count">0</div>
+      <button id="increment">+</button>
+      <button id="decrement">-</button>
+    </div>
+
+    <a href="https://github.com/syumai/go-wasm-playground">Source code</a>
+
+    <script src="index.js"></script>
+    <script>
+      runApp('index.wasm');
+    </script>
+    <script>
+      (() => {
+        let counter;
+
+        const countContainer = document.getElementById("count");
+        const incBtn = document.getElementById("increment");
+        const decBtn = document.getElementById("decrement");
+
+        const initCounter = () => {
+          if (!counter) {
+            counter = new Counter();
+          }
+        };
+
+        const update = () => {
+          countContainer.textContent = counter.count();
+        };
+
+        incBtn.addEventListener('click', () => {
+          initCounter();
+          counter.increment();
+          update();
+        });
+
+        decBtn.addEventListener('click', () => {
+          initCounter();
+          counter.decrement();
+          update();
+        });
+      })();
+    </script>
+  </body>
+</html>
