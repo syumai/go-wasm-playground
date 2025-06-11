@@ -1,0 +1,13 @@
+package calculator:calc@0.1.0;
+
+interface calculator {
+    add: func(a: f64, b: f64) -> f64;
+    subtract: func(a: f64, b: f64) -> f64;
+    multiply: func(a: f64, b: f64) -> f64;
+    divide: func(a: f64, b: f64) -> f64;
+}
+
+world calculator-world {
+    include wasi:cli/imports@0.2.0;
+    export calculator;
+}

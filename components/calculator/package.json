@@ -1,0 +1,33 @@
+{
+  "name": "calculator",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sample": "node --experimental-strip-types src/sample.ts",
+    "build:wit": "wkg wit build",
+    "build:bindings": "go tool wit-bindgen-go generate --world calculator-world --out internal ./calculator:calc@0.1.0.wasm",
+    "build:wasm": "tinygo build -target=wasip2 -o calculator.wasm --wit-package ./calculator:calc@0.1.0.wasm --wit-world calculator-world main.go",
+    "build:js": "pnpm exec jco transpile calculator.wasm -o js-output",
+    "build": "pnpm run build:wit && pnpm run build:bindings && pnpm run build:wasm && pnpm run build:js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.8.1",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "dependencies": {
+    "@bytecodealliance/jco": "^1.11.2",
+    "@bytecodealliance/preview2-shim": "^0.17.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
